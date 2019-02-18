@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="cadastro.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body class="container valign-wrapper">
+	<div id="pag1" class="container valign">
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="nome" type="text" class="validate white-text">
+				<label for="nome">Name</label>
+			</div>
+			<div class="input-field col s12">
+				<input id="email" type="text" class="validate white-text">
+				<label for="email">Email</label>
+			</div>
+			<div class="input-field col s12">
+				<input id="git" type="text" class="validate white-text">
+				<label for="git">Repositório do git</label>
+			</div>
+			<div class="input-field col s12">
+				<input id="avatar" type="text" class="validate white-text">
+				<label for="avatar">Avatar</label>
+			</div>
+			<div class="col offset-s3">
+				<button onclick="enviarFormulario()" class="btn waves-effect waves-light" type="submit" name="action">enviar</button>
+			</div>
+			<div class="col offset-s1">
+				<a href="lista.html"><button class="btn waves-effect waves-light" type="submit" name="action">lista</button></a>
+			</div>
+		</div>
+	</div>
+	<!--linkagem-->
+	<script src="cadastro.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
