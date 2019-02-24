@@ -1,32 +1,49 @@
 function colocardados () {
 	if (typeof(Storage) !== "undefined") {
-		var chaves = localStorage.getItem('listadechaves').split(',')
-		chaves.forEach(function (chave) {
-			var dados = localStorage.getItem(chave)
-			var conta = dados.split(',', 3)
-			conta[conta.length] = dados.slice(dados.indexOf('http',))
-			document.getElementById('lista').innerHTML += criaEstrutura(conta)
-		})
-  } else {
+		if (localStorage.getItem('listadechaves') != null) {
+			var chaves = localStorage.getItem('listadechaves').split(',')
+			chaves.forEach(function (chave) {
+				var dados = localStorage.getItem(chave)
+				var conta = dados.split(',', 3)
+				conta[conta.length] = dados.slice(1 + dados.indexOf(',',dados.lastIndexOf(conta[2])))
+				document.getElementById('lista').innerHTML += criaEstrutura(conta)
+			})
+		}
+		verificacao(document.getElementsByTagName('ul')[0],document.getElementsByTagName('button')[0])
+	} else {
     window.alert("API Web Storage não encontrada");
   }
 }
 
 function criaEstrutura (campos) {
-	var estrutura = '<li class="collection-item avatar"><img src="'
+	var estrutura = '<li class="collection-item avatar" onclick="insereEscolha(this)"><img src="'
 	estrutura += campos[3] + '" alt="" class="circle"><span class="title">'
 	estrutura += campos[0] + '</span><p>'
 	estrutura += campos[1] + '</p></li>'
 	return estrutura
 }
 
-/*function criaEstrutura (campos) {
-	var estrutura = '<li><table class="centered white"><thead><tr><th>'
-	estrutura += campos[0] + '</th></tr></thead><tbody><tr><td><img style="max-height: 300px;" src="'
-	estrutura += campos[3] + '"></td></tr><tr><td>email: '
-	estrutura += campos[1] + '</td></tr><tr><td>git: '
-	estrutura += campos[2] + '</td></tr></tbody></table>'
-	estrutura += '<div class="row"></div></li>'
-	console.log(estrutura)
-	return estrutura
-}*/
+function insereEscolha (escolha) {
+	var posicao = Array.from(document.getElementsByTagName('li')).findIndex(function (membro) {
+		return membro == escolha
+	})
+	localStorage.setItem('escolha', posicao)
+	window.location.href = 'detalhes.html'
+}
+
+function verificacao(ul, button) {
+	if(ul.innerHTML == ""){
+		ul.style.display = 'none'
+		button.style.display = 'none'
+	}
+}
+
+function apagarLista () {
+	var chaves = localStorage.getItem('listadechaves').split(',')
+	chaves.forEach(function (chave) {
+		localStorage.removeItem(chave)
+	})
+	localStorage.removeItem('listadechaves')
+	localStorage.removeItem('escolha')
+	window.location.reload()
+}
