@@ -12,7 +12,15 @@ function colocardados () {
   }
 }
 
-function criaEstrutura (campos){
+function criaEstrutura (campos) {
+	var estrutura = '<li class="collection-item avatar"><img src="'
+	estrutura += campos[3] + '" alt="" class="circle"><span class="title">'
+	estrutura += campos[0] + '</span><p>'
+	estrutura += campos[1] + '</p></li>'
+	return estrutura
+}
+
+/*function criaEstrutura (campos) {
 	var estrutura = '<li><table class="centered white"><thead><tr><th>'
 	estrutura += campos[0] + '</th></tr></thead><tbody><tr><td><img style="max-height: 300px;" src="'
 	estrutura += campos[3] + '"></td></tr><tr><td>email: '
@@ -21,4 +29,4 @@ function criaEstrutura (campos){
 	estrutura += '<div class="row"></div></li>'
 	console.log(estrutura)
 	return estrutura
-}
+}*/
